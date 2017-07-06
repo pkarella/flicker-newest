@@ -1,0 +1,14 @@
+<h1><%= @user.username %></h1>
+<%= image_tag(@user.avatar) %>
+<h2><%= @user.username %>'s pictures</h2>
+<ul class="list-unstyled">
+  <% @pictures.each do |picture| %>
+    <li><%= image_tag(picture.image) %></li><br>
+  <% end %>
+</ul>
+<h2><%= @user.username %>'s favorited pictures</h2>
+<ul class="list-unstyled">
+  <% @favorites.each do |favorite| %>
+    <li><%= image_tag(favorite.image.image) %></li><br>
+  <% end %>
+</ul>

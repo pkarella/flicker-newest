@@ -1,0 +1,16 @@
+<h1>All pictures</h1>
+<ul class="list-unstyled">
+  <% @pictures.each do |picture| %>
+    <li class="image-line"><%= image_tag(picture.image) %></li><br>
+    <li class="uploaded-by-line">Uploaded by: <%= link_to picture.user.username, user_path(picture.user) %></li>
+    <% if @current_user %>
+      <% if @current_user_images_favorited.include?(picture.id) %>
+        <span>Favorited</span>
+      <% else %>
+        <li class="favorite-line"><%= button_to "Favorite", {:controller => "favorites", :action => "create", :user_id => @current_user.id, :image_id => picture.id}, :method=>:post %></li>
+      <% end %>
+    <% else %>
+      <li class="favorite-line"><button>Favorite</button>
+    <% end %>
+  <% end %>
+</ul>

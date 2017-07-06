@@ -1,0 +1,19 @@
+<% if @current_user %>
+  <h1>Welcome, <%= @current_user.username %></h1>
+<% else %>
+  <h1>Welcome to Picture Site</h1>
+<% end %>
+<% if @current_user %>
+  <%= link_to "Add a new picture", new_user_image_path(@current_user) %>
+<% end %>
+<%= link_to "View all pictures", images_path %>
+<% if @current_user %>
+  <h2>Your Pictures</h2>
+  <ul class="list-unstyled">
+    <% @current_user_pictures.each do |current_user_picture| %>
+      <li><%= image_tag(current_user_picture.image) %></li><br>
+      <p><%= link_to "Edit", edit_image_path(current_user_picture) %></p>
+      <p><%= link_to "Delete", image_path(current_user_picture), :data => {:confirm => "Are you sure?", :method => "delete"} %></p>
+    <% end %>
+  </ul>
+<% end %>
